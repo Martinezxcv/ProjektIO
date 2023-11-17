@@ -1,0 +1,55 @@
+# Repozytorium GitHub - Projekt Saper
+
+## Opis Projektu
+
+Projekt Saper to aplikacja mobilna implementująca klasyczną grę Saper. Celem projektu jest dostarczenie użytkownikom emocjonującej rozrywki oraz możliwości rozwijania umiejętności logicznego myślenia.
+
+## Instrukcje Instalacji
+
+Aby zainstalować aplikację Saper na swoim urządzeniu mobilnym, postępuj zgodnie z poniższymi krokami:
+
+1. **Sklonuj Repozytorium:**
+    Sklonuj repozytorium na swój komputer przy użyciu poniższego polecenia w terminalu:
+
+    ```bash
+    git clone https://github.com/twoje-konto/saper.git
+    ```
+
+2. **Pobierz Plik APK:**
+    Przejdź do katalogu projektu, a następnie do sekcji zawierającej pliki aplikacji. Pobierz plik APK na swój telefon lub tablet.
+
+3. **Włącz Nieznane Źródła:**
+    W ustawieniach urządzenia włącz opcję "Nieznane Źródła" lub "Instalacja z nieznanych źródeł", aby móc instalować aplikacje spoza Sklepu Play.
+
+4. **Zainstaluj Aplikację:**
+    Otwórz pobrany plik APK na swoim urządzeniu mobilnym i postępuj zgodnie z instrukcjami instalacji.
+
+5. **Uruchom Aplikację:**
+    Po zainstalowaniu, znajdź ikonę aplikacji Saper na swoim ekranie głównym i uruchom aplikację.
+
+6. **Ciesz Się Grą!**
+    Teraz możesz cieszyć się grą w Saper na swoim urządzeniu mobilnym!
+
+
+
+## Struktura Katalogów
+saper/
+|-- src/
+| |-- main/
+| |-- java/
+| | |-- com/
+| | |-- example/
+| | |-- saper/
+| | |-- SaperMobileApplication.java
+|-- res/
+| |-- drawable/
+| |-- bomb_icon.png
+| |-- flag_icon.png
+|-- assets/
+|-- docs/
+|-- LICENSE
+|-- README.md
+
+
+
+
