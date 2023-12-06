@@ -1,5 +1,6 @@
 package com.example.saper;
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class ImageAdapter extends BaseAdapter {
         foto.setImageResource(singleImageResource);
         return foto;
     }
+
 
 
 }
