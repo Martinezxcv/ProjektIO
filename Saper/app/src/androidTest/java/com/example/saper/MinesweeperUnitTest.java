@@ -1,6 +1,8 @@
 package com.example.saper;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import androidx.test.rule.ActivityTestRule;
@@ -23,6 +25,10 @@ public class MinesweeperUnitTest {
         gridViewActivity = activityRule.getActivity();
     }
 
+
+
+
+    /////////////////Jednostkowe/////////////////
     @Test
     public void testGameEndCondition() {
         // Test sprawdzający warunek końca gry
@@ -32,7 +38,6 @@ public class MinesweeperUnitTest {
 
     @Test
     public void testGenerateMineField() {
-        // Test generowania planszy w grze Saper
         int gridSize = 5;
         int bombCount = 5;
 
@@ -43,12 +48,15 @@ public class MinesweeperUnitTest {
         Boolean[][] mineField = gridViewActivity.getMineField();
 
         // Sprawdzenie czy plansza została poprawnie wygenerowana
-        assertEquals(gridSize, mineField.length);
+        assertEquals("Niepoprawny rozmiar planszy", gridSize, mineField.length);
         for (int i = 0; i < gridSize; i++) {
-            assertEquals(gridSize, mineField[i].length);
+            assertEquals("Niepoprawny rozmiar planszy w wierszu " + i, gridSize, mineField[i].length);
+            for (int j = 0; j < gridSize; j++) {
+                assertNotNull("Pole planszy nie zostało zainicjalizowane", mineField[i][j]);
+            }
         }
 
-        // Sprawdzenie czy liczba bomb jest zgodna z oczekiwaniami
+        // Sprawdzenie liczby bomb na planszy
         int count = 0;
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -57,8 +65,39 @@ public class MinesweeperUnitTest {
                 }
             }
         }
-        assertEquals(bombCount, count);
+
+        System.out.println("Liczba bomb na planszy: " + count);
+        assertEquals("Niepoprawna liczba bomb na planszy", bombCount, count);
     }
+
+
+
+    @Test
+    public void testUncoverFieldWithoutBomb() {
+        int gridSize = 5; // Przykładowy rozmiar planszy
+        gridViewActivity.createMineField(gridSize, 5);
+
+        // Zakładamy, że wybieramy losowe pole bez bomby
+        int row = 0;
+        int col = 0;
+        while (gridViewActivity.getMineField()[row][col]) {
+            // Losuj inne pole, dopóki nie trafisz na pole bez bomby
+            row = new Random().nextInt(gridSize);
+            col = new Random().nextInt(gridSize);
+        }
+
+        // Odsłania pole bez bomby
+        gridViewActivity.uncoverField(row, col);
+
+        // Sprawdź, czy pole jest teraz odsłonięte
+        assertTrue(gridViewActivity.isFieldUncovered(row, col));
+    }
+
+
+
+
+
+//////////////Automatyczne//////////////////////////////
 
     @Test
     public void testUncoverRandomField() {
@@ -72,6 +111,19 @@ public class MinesweeperUnitTest {
         gridViewActivity.uncoverField(row, col);
 
         assertTrue(gridViewActivity.isFieldUncovered(row, col));
+    }
+
+    @Test
+    public void testInitialUncoveredFields() {
+        int gridSize = 5; // Przykładowy rozmiar planszy
+        gridViewActivity.createMineField(gridSize, 5);
+
+        // Sprawdź, czy wszystkie pola na planszy są początkowo nieodkryte
+        for (int row = 0; row < gridSize; row++) {
+            for (int col = 0; col < gridSize; col++) {
+                assertFalse(gridViewActivity.isFieldUncovered(row, col));
+            }
+        }
     }
 
 }
